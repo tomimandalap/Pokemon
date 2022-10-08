@@ -13,7 +13,7 @@ const params = ref({
 });
 
 // computed
-const urlPokemon = computed(() => pokemonStore.urlPokemon);
+const datas = computed(() => pokemonStore.datas);
 const pokeData = computed(() => pokemonStore.pokeData);
 const previous = computed(() => pokemonStore.previous);
 const next = computed(() => pokemonStore.next);
@@ -23,9 +23,9 @@ const load = async () => {
   const res = await pokemonStore.getList(params.value);
 
   if (res) {
-    urlPokemon.value.forEach((url) => {
-      const id = url.split("/pokemon")?.[1];
-      pokemonStore.pokeList(id);
+    datas.value.forEach((item) => {
+      const name = item.name;
+      pokemonStore.pokeList(name);
     });
   }
 };
@@ -68,7 +68,7 @@ onMounted(() => load());
           <b-button
             variant="outline-danger"
             class="w-100"
-            @click="router.push(`/web/detail/${item.id}`)"
+            @click="router.push(`/web/detail/${item.name}`)"
           >
             Detail
           </b-button>

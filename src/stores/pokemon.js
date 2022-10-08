@@ -74,14 +74,16 @@ export const usePokemonStore = defineStore({
           return false;
         });
     },
-    pokeList(id) {
-      axios
-        .get(`${import.meta.env.VITE_API_ENDPOINT}/pokemon${id}`)
+    pokeList(name) {
+      return axios
+        .get(`${import.meta.env.VITE_API_ENDPOINT}/pokemon/${name}`)
         .then((res) => {
           this.pokeData.push({ ...res.data });
+          return true;
         })
         .catch((err) => {
           console.error(err.response);
+          return false;
         });
     },
   },

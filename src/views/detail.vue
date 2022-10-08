@@ -28,9 +28,9 @@ const sprites = computed(() => pokemonStore.sprites);
 // methods
 const load = () => {
   const { params } = route;
-  const id = Number(params?.id);
+  const name = params.name;
   pokemonStore.$reset();
-  pokemonStore.pokeList(`/${id}`);
+  pokemonStore.pokeList(name);
 };
 
 // mounted
