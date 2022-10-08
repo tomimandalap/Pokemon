@@ -26,7 +26,6 @@ const load = async () => {
     urlPokemon.value.forEach((url) => {
       const id = url.split("/pokemon")?.[1];
       pokemonStore.pokeList(id);
-      // pokemonStore.pokeForm(url.split("/pokemon")?.[1]);
     });
   }
 };
