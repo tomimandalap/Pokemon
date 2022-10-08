@@ -53,7 +53,7 @@ onMounted(() => load());
 </script>
 <template>
   <div class="home container-fluid">
-    <b-row>
+    <b-row v-if="pokeData.length">
       <b-col v-for="(item, i) in pokeData" :key="i" md="3" sm="6" cols="12">
         <b-card
           data-aos="zoom-in-up"
@@ -93,6 +93,16 @@ onMounted(() => load());
         >
           Next
         </b-button>
+      </b-col>
+    </b-row>
+
+    <b-row v-else>
+      <b-col
+        cols="12"
+        class="d-flex flex-column justify-content-center align-items-center min-vh-100"
+      >
+        <img src="@/assets/img/logo.png" max-width="1000" />
+        <h3 class="text-danger my-3">No results found!</h3>
       </b-col>
     </b-row>
   </div>
