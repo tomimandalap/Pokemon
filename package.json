@@ -1,6 +1,9 @@
 {
   "name": "package.json",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Tes membuat website menggunakan pokemon https://pokeapi.co/",
+  "author": "tomi mandala putra",
+  "private": true,
   "scripts": {
     "dev": "vite --port 3000",
     "build": "vite build",
