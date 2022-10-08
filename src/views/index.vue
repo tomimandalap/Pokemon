@@ -1,7 +1,8 @@
 <script setup>
-import { onMounted, computed, ref } from "vue";
+import { onMounted, computed, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { usePokemonStore } from "@/stores/pokemon";
+import { createToaster } from "@meforma/vue-toaster";
 
 // declarations
 const urlImg = import.meta.env.VITE_API_IMG_URL;
@@ -11,15 +12,30 @@ const params = ref({
   offset: 0,
   limit: 20,
 });
+const toaster = createToaster({
+  position: "bottom",
+});
 
 // computed
 const datas = computed(() => pokemonStore.datas);
 const pokeData = computed(() => pokemonStore.pokeData);
 const previous = computed(() => pokemonStore.previous);
 const next = computed(() => pokemonStore.next);
+const alert_show = computed(() => pokemonStore.alert_show);
+const alert_message = computed(() => pokemonStore.alert_message);
+
+// watch
+watch(alert_show, (val) => {
+  if (val) {
+    toaster.error(`${alert_message.value}`);
+  }
+  pokemonStore.$reset();
+});
 
 // metods
 const load = async () => {
+  window.scrollTo(0, 0);
+  pokemonStore.$reset();
   const res = await pokemonStore.getList(params.value);
 
   if (res) {

@@ -70,6 +70,9 @@ export const usePokemonStore = defineStore({
         })
         .catch((err) => {
           console.error(err.response);
+          this.alert_show = true;
+          this.alert_message = err.response?.data;
+
           return false;
         });
     },

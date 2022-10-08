@@ -40,6 +40,7 @@ watch(search, (val) => {
 
 // methods
 const load = async () => {
+  pokemonStore.$reset();
   const res = await pokemonStore.getList(params.value);
   if (res) {
     datas.value.forEach((item) => {
