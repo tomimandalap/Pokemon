@@ -19,14 +19,43 @@ export const usePokemonStore = defineStore({
         : null,
     next: (state) =>
       state.pagination.next ? state.pagination.next.split("?")[1] : null,
-    abilities: (state) => state.pokeData?.[0]?.abilities || [],
+    abilities: (state) =>
+      state.pokeData?.[0]?.abilities?.map((item) => {
+        return {
+          name: item.ability.name,
+          url: item.ability.url,
+          slot: item.slot,
+        };
+      }) || [],
     base_experience: (state) => state.pokeData?.[0]?.base_experience,
     forms: (state) => state.pokeData?.[0]?.forms || [],
-    game_indices: (state) => state.pokeData?.[0]?.game_indices || [],
+    game_indices: (state) =>
+      state.pokeData?.[0]?.game_indices?.map((item) => {
+        return {
+          game_index: item.game_index,
+          name: item.version.name,
+          url: item.version.url,
+        };
+      }) || [],
     height: (state) => state.pokeData?.[0]?.height,
     weight: (state) => state.pokeData?.[0]?.weight,
-    stats: (state) => state.pokeData?.[0]?.stats || [],
-    types: (state) => state.pokeData?.[0]?.types || [],
+    stats: (state) =>
+      state.pokeData?.[0]?.stats?.map((item) => {
+        return {
+          base_stat: item.base_stat,
+          effort: item.effort,
+          stat: item.stat.name,
+          url: item.stat.url,
+        };
+      }) || [],
+    types: (state) =>
+      state.pokeData?.[0]?.types?.map((item) => {
+        return {
+          slot: item.slot,
+          name: item.type.name,
+          url: item.type.url,
+        };
+      }) || [],
     sprites: (state) => state.pokeData?.[0]?.sprites,
   },
   actions: {

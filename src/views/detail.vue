@@ -2,7 +2,10 @@
 import { onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { usePokemonStore } from "@/stores/pokemon";
+
+// components
 import Cardimg from "@/components/cardImg.vue";
+import Customtable from "@/components/customTable.vue";
 
 // declarations
 const route = useRoute();
@@ -69,47 +72,23 @@ onMounted(() => load());
       </b-col>
       <b-col md="8" class="my-2">
         <b-card data-aos="zoom-in-up" class="w-100 h-100">
-          <h6 v-if="abilities.length">Abilities</h6>
-          <ul v-if="abilities.length">
-            <li v-for="(list, i) in abilities" :key="i">
-              <p>{{ list.ability.name }}</p>
-            </li>
-          </ul>
+          <Customtable
+            v-if="abilities.length"
+            title="Abilities"
+            :items="abilities"
+          />
 
-          <h6 v-if="forms.length">Forms</h6>
-          <ul v-if="forms.length">
-            <li v-for="(list, j) in forms" :key="j">
-              <p>{{ list.name }}</p>
-            </li>
-          </ul>
+          <Customtable v-if="forms.length" title="Forms" :items="forms" />
 
-          <h6 v-if="game_indices.length">Game Indices</h6>
-          <ul v-if="game_indices.length">
-            <li v-for="(list, k) in game_indices" :key="k">
-              <p>
-                Game index: {{ list.game_index }} | Version:
-                {{ list.version.name }}
-              </p>
-            </li>
-          </ul>
+          <Customtable
+            v-if="game_indices.length"
+            title="Game Indices"
+            :items="game_indices"
+          />
 
-          <h6 v-if="stats.length">Stats</h6>
-          <ul v-if="stats.length">
-            <li v-for="(list, l) in stats" :key="l">
-              <p>
-                Base stat: {{ list.base_stat }} | Effort: {{ list.effort }} |
-                Stat:
-                {{ list.stat.name }}
-              </p>
-            </li>
-          </ul>
+          <Customtable v-if="stats.length" title="Stats" :items="stats" />
 
-          <h6 v-if="types.length">Types</h6>
-          <ul v-if="types.length">
-            <li v-for="(list, m) in types" :key="m">
-              <p>Slot: {{ list.slot }} | Type: {{ list.type.name }}</p>
-            </li>
-          </ul>
+          <Customtable v-if="types.length" title="Types" :items="types" />
         </b-card>
       </b-col>
     </b-row>
