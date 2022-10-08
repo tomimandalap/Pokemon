@@ -1,35 +1,46 @@
-# Pokemon
+### ```DESCRIPTION```
 
-This template should help get you started developing with Vue 3 in Vite.
+Membuat website Zullkit untuk mengupgrade skill saya dengan belajar VUE 3 sebagai freamwork untuk frontend dan mengaplikasikan state management Pinia dan composition API. Silahkan kunjungi website [ini](https://zullkit.netlify.app/web).
 
-## Recommended IDE Setup
+### ```Build with```
+- [Vue 3](https://vuejs.org/guide/introduction.html) The web framework used
+- [Axios](https://www.npmjs.com/package/axios) HTTP Client
+- [boostrap](https://bootstrap-vue.org/) Styling using bootstrap
+- [Pinia](https://pinia.vuejs.org/) State Management
+- [@meforma/vue-toaster](https://www.npmjs.com/package/@meforma/vue-toaster) toas notification
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
+### ```Installing```
+Clone project 
+```
+git clone https://github.com/tomimandalap/Pokemon.git
+```
+```
 npm install
 ```
+or
+```
+yarn install
+```
 
-### Compile and Hot-Reload for Development
-
-```sh
+### ```Starting```
+To start use
+```
 npm run dev
 ```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
+or
+```
+yarn start
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+---
 
-```sh
-npm run lint
+
+### ```Enviroment```
+add ```.env```
+
 ```
+VITE_API_ENDPOINT = https://pokeapi.co/api/v2
+VITE_API_IMG_URL = https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny
+```
+---
