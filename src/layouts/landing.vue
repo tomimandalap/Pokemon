@@ -1,6 +1,6 @@
 <template>
   <div class="layout-landing">
-    <b-navbar toggleable="sm" type="dark" variant="danger">
+    <b-navbar toggleable="sm" type="dark" variant="danger" fixed="top">
       <b-navbar-brand href="#">
         <img src="@/assets/img/logo.png" width="120" />
       </b-navbar-brand>
