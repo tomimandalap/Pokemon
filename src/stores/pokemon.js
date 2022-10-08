@@ -5,6 +5,7 @@ export const usePokemonStore = defineStore({
   state: () => ({
     datas: [],
     pokeData: [],
+    pagination: {},
     alert_show: false,
     alert_title: "",
     alert_message: "",
@@ -12,14 +13,21 @@ export const usePokemonStore = defineStore({
   getters: {
     urlPokemon: (state) => state.datas?.map((item) => item.url),
     cardPokemon: (state) => state.pokeData.map((item) => item.forms[0]),
+    previous: (state) =>
+      state.pagination.previous
+        ? state.pagination.previous.split("?")[1]
+        : null,
+    next: (state) =>
+      state.pagination.next ? state.pagination.next.split("?")[1] : null,
   },
   actions: {
     getList(params) {
       return axios
         .get(`${import.meta.env.VITE_API_ENDPOINT}/pokemon`, { params })
         .then((res) => {
-          const results = res.data.results;
+          const { previous, next, results } = res.data;
           this.datas = results;
+          this.pagination = { previous, next };
           return true;
         })
         .catch((err) => {
