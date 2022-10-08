@@ -57,6 +57,7 @@ export const usePokemonStore = defineStore({
         };
       }) || [],
     sprites: (state) => state.pokeData?.[0]?.sprites,
+    name: (state) => state.pokeData?.[0]?.name,
   },
   actions: {
     getList(params) {
@@ -78,16 +79,6 @@ export const usePokemonStore = defineStore({
         .get(`${import.meta.env.VITE_API_ENDPOINT}/pokemon${id}`)
         .then((res) => {
           this.pokeData.push({ ...res.data });
-        })
-        .catch((err) => {
-          console.error(err.response);
-        });
-    },
-    pokeForm(id) {
-      axios
-        .get(`${import.meta.env.VITE_API_ENDPOINT}/pokemon-form${id}`)
-        .then((res) => {
-          console.log("THIS", res.data.sprites);
         })
         .catch((err) => {
           console.error(err.response);
