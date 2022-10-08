@@ -26,10 +26,11 @@ const load = async () => {
 onMounted(() => load());
 </script>
 <template>
-  <b-container fluid="">
-    <b-row class="my-5">
+  <div class="home container-fluid">
+    <b-row>
       <b-col v-for="(item, i) in pokeData" :key="i" md="3" sm="6" cols="12">
         <b-card
+          data-aos="zoom-in-up"
           :title="item.name"
           :img-src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${item.id}.png`"
           img-alt="Image"
@@ -40,5 +41,5 @@ onMounted(() => load());
         ></b-card>
       </b-col>
     </b-row>
-  </b-container>
+  </div>
 </template>
