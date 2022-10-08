@@ -19,6 +19,15 @@ export const usePokemonStore = defineStore({
         : null,
     next: (state) =>
       state.pagination.next ? state.pagination.next.split("?")[1] : null,
+    abilities: (state) => state.pokeData?.[0]?.abilities || [],
+    base_experience: (state) => state.pokeData?.[0]?.base_experience,
+    forms: (state) => state.pokeData?.[0]?.forms || [],
+    game_indices: (state) => state.pokeData?.[0]?.game_indices || [],
+    height: (state) => state.pokeData?.[0]?.height,
+    weight: (state) => state.pokeData?.[0]?.weight,
+    stats: (state) => state.pokeData?.[0]?.stats || [],
+    types: (state) => state.pokeData?.[0]?.types || [],
+    sprites: (state) => state.pokeData?.[0]?.sprites,
   },
   actions: {
     getList(params) {
