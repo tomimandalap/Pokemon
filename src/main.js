@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import BootstrapVue3 from "bootstrap-vue-3";
+import Toaster from "@meforma/vue-toaster";
 import AOS from "aos";
 
 import App from "./App.vue";
@@ -21,6 +22,7 @@ AOS.init({
 const app = createApp(App);
 
 app.use(BootstrapVue3);
+app.use(Toaster);
 app.use(createPinia());
 app.use(router);
 

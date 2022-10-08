@@ -1,6 +1,7 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import { usePokemonStore } from "@/stores/pokemon";
+import { createToaster } from "@meforma/vue-toaster";
 
 // props
 defineProps({
@@ -10,6 +11,10 @@ defineProps({
 // declarations
 const search = ref("");
 const pokemonStore = usePokemonStore();
+const toaster = createToaster({
+  position: "bottom",
+});
+
 const params = ref({
   offset: 0,
   limit: 20,
@@ -17,11 +22,25 @@ const params = ref({
 
 // computed
 const datas = computed(() => pokemonStore.datas);
+const alert_show = computed(() => pokemonStore.alert_show);
+const alert_message = computed(() => pokemonStore.alert_message);
+
+// watch
+watch(alert_show, (val) => {
+  if (val) {
+    toaster.error(`${alert_message.value}`);
+  }
+  pokemonStore.$reset();
+});
+
+watch(search, (val) => {
+  const isEmpty = !val;
+  if (isEmpty) load();
+});
 
 // methods
 const load = async () => {
   const res = await pokemonStore.getList(params.value);
-
   if (res) {
     datas.value.forEach((item) => {
       const name = item.name;
@@ -31,10 +50,11 @@ const load = async () => {
 };
 
 const handleSearch = async () => {
-  const isEmpty = search.value;
-  pokemonStore.$reset();
-  if (isEmpty) await pokemonStore.pokeList(search.value);
-  else load();
+  const isEmpty = !search.value;
+  if (!isEmpty) {
+    pokemonStore.$reset();
+    await pokemonStore.pokeList(search.value);
+  }
 };
 </script>
 <template>

@@ -7,7 +7,6 @@ export const usePokemonStore = defineStore({
     pokeData: [],
     pagination: {},
     alert_show: false,
-    alert_title: "",
     alert_message: "",
   }),
   getters: {
@@ -83,6 +82,9 @@ export const usePokemonStore = defineStore({
         })
         .catch((err) => {
           console.error(err.response);
+
+          this.alert_show = true;
+          this.alert_message = err.response?.data;
           return false;
         });
     },
