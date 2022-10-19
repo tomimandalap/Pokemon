@@ -30,7 +30,7 @@ npm run dev
 ```
 or
 ```
-yarn start
+yarn dev
 ```
 
 ---
